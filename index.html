@@ -452,61 +452,148 @@ footer p,footer a{
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const modal=document.getElementById('accountModal');
-const content=document.getElementById('modalContent');
-<script>
-const modal=document.getElementById('accountModal');
-const content=document.getElementById('modalContent');
 
-function openModal(type){
+<script>
+const SUPABASE_URL = 'https://usjseqyckrgrekhuhtae.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_L-qFevoQ_I2Bjam8KCfNew_uu5PI3_P';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const modal = document.getElementById('accountModal');
+const content = document.getElementById('modalContent');
+
+function openModal(type) {
   modal.classList.add('show');
   renderForm(type);
 }
-function closeModal(){
+
+function closeModal() {
   modal.classList.remove('show');
 }
-function outsideClose(e){
-  if(e.target===modal)closeModal();
+
+function outsideClose(e) {
+  if (e.target === modal) closeModal();
 }
-function renderForm(type){
-  if(type==='register'){
-    content.innerHTML=`
+
+function renderForm(type) {
+  if (type === 'register') {
+    content.innerHTML = `
       <h2>Join CocoBelle</h2>
       <p>Create your account and start collecting sweet rewards.</p>
-      <form onsubmit="demoSubmit(event)">
+
+      <form onsubmit="registerCustomer(event)">
         <label>Full Name</label>
-        <input required type="text" placeholder="Your full name">
+        <input id="regName" required type="text" placeholder="Your full name">
+
         <label>Email Address</label>
-        <input required type="email" placeholder="Your email">
+        <input id="regEmail" required type="email" placeholder="Your email">
+
         <label>Mobile Number</label>
-        <input required type="tel" pattern="[0-9]{10}" placeholder="10 digit mobile number">
+        <input id="regPhone" required type="tel"
+          pattern="[0-9]{10}" placeholder="10 digit mobile number">
+
         <label>Password</label>
-        <input required type="password" minlength="8" placeholder="Create password">
+        <input id="regPassword" required type="password"
+          minlength="8" placeholder="Create password">
+
         <button class="btn" type="submit">Create Account</button>
       </form>
-      <div class="switch">Already a member? <a href="#" onclick="renderForm('login');return false">Login</a></div>
-      <div class="status" id="formStatus"></div>`;
-  }else{
-    content.innerHTML=`
+
+      <div class="switch">
+        Already a member?
+        <a href="#" onclick="renderForm('login');return false">Login</a>
+      </div>
+      <div class="status" id="formStatus"></div>
+    `;
+  } else {
+    content.innerHTML = `
       <h2>Welcome Back</h2>
       <p>Login to explore your CocoBelle rewards.</p>
-      <form onsubmit="demoSubmit(event)">
+
+      <form onsubmit="loginCustomer(event)">
         <label>Email Address</label>
-        <input required type="email" placeholder="Your email">
+        <input id="loginEmail" required type="email" placeholder="Your email">
+
         <label>Password</label>
-        <input required type="password" placeholder="Your password">
+        <input id="loginPassword" required type="password"
+          placeholder="Your password">
+
         <button class="btn" type="submit">Login</button>
       </form>
-      <div class="switch">New to CocoBelle? <a href="#" onclick="renderForm('register');return false">Create Account</a></div>
-      <div class="status" id="formStatus"></div>`;
+
+      <div class="switch">
+        New to CocoBelle?
+        <a href="#" onclick="renderForm('register');return false">Create Account</a>
+      </div>
+      <div class="status" id="formStatus"></div>
+    `;
   }
 }
-function demoSubmit(e){
+
+async function registerCustomer(e) {
   e.preventDefault();
-  document.getElementById('formStatus').textContent=
-  'Customer authentication will be connected securely with Supabase in the next development stage.';
+
+  const status = document.getElementById('formStatus');
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const password = document.getElementById('regPassword').value;
+
+  status.textContent = 'Creating your account...';
+
+  try {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: 'https://cocobelle-dessert.github.io/cocobelle-premium/',
+        data: {
+          full_name: name,
+          phone: phone
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    if (data.session) {
+      status.textContent = 'Account created successfully. Welcome to CocoBelle!';
+    } else {
+      status.textContent =
+        'Registration successful! Please check your email and confirm your account before logging in.';
+    }
+
+  } catch (error) {
+    status.textContent = error.message;
+  }
+}
+
+async function loginCustomer(e) {
+  e.preventDefault();
+
+  const status = document.getElementById('formStatus');
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  status.textContent = 'Logging in...';
+
+  try {
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+    if (error) throw error;
+
+    status.textContent = 'Login successful! Welcome to CocoBelle.';
+
+  } catch (error) {
+    status.textContent = error.message;
+  }
 }
 </script>
-</body>
-</html>
+  
