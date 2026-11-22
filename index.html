@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#351b19">
+<title>CocoBelle | Sweet Moments, Beautiful Rewards</title>
+<meta name="description" content="Discover delicious desserts and beautiful rewards at CocoBelle.">
+
+<style>
+:root {
+  --brown:#351b19;
+  --dark:#241311;
+  --cream:#fff8ef;
+  --pink:#f4c9ce;
+  --rose:#b66b76;
+  --gold:#c59a58;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Georgia,'Times New Roman',serif;
+  background:var(--cream);
+  color:var(--brown);
+}
+button,a{font:inherit}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+.topbar{
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:10px;
+  font-size:12px;
+  letter-spacing:2px;
+}
+header{
+  background:#fffaf5;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 3px 18px #351b1910;
+}
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:17px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{
+  font-size:29px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+.logo span{color:var(--rose)}
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-family:Arial,sans-serif;
+  font-size:13px;
+}
+.navlinks a:hover{color:var(--rose)}
+.btn{
+  border:0;
+  background:var(--brown);
+  color:#fff;
+  padding:13px 22px;
+  border-radius:3px;
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  transition:.2s;
+}
+.btn:hover{background:var(--rose)}
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--brown);
+  color:var(--brown);
+}
+.hero{
+  min-height:560px;
+  background:
+  linear-gradient(90deg,#241311ed 0%,#351b19bd 48%,#351b1930 100%),
+  url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1800&q=85') center/cover;
+  display:flex;
+  align-items:center;
+  color:white;
+  padding:75px 8%;
+}
+.hero-content{max-width:620px}
+.eyebrow{
+  color:#f3d5a5;
+  letter-spacing:4px;
+  font:12px Arial,sans-serif;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(42px,7vw,76px);
+  line-height:1.08;
+  margin:22px 0;
+}
+.hero h1 span{color:#f2c5ca}
+.hero p{
+  font:15px/1.9 Arial,sans-serif;
+  color:#f4e8e3;
+  max-width:490px;
+}
+.hero-actions{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#241311}
+.section{
+  padding:80px 6%;
+  max-width:1250px;
+  margin:auto;
+}
+.section-heading{text-align:center;margin-bottom:42px}
+.section-heading small{
+  color:var(--rose);
+  font:11px Arial,sans-serif;
+  letter-spacing:3px;
+}
+.section-heading h2{
+  font-size:clamp(30px,5vw,43px);
+  margin:12px 0;
+}
+.section-heading p{
+  font:14px/1.8 Arial,sans-serif;
+  color:#826c65;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:25px;
+}
+.product{
+  background:white;
+  border:1px solid #eadbd2;
+  overflow:hidden;
+}
+.product img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  display:block;
+}
+.product-info{padding:24px}
+.product-info h3{font-size:23px;margin-bottom:10px}
+.product-info p{
+  font:13px/1.7 Arial,sans-serif;
+  color:#806e66;
+}
+.price{color:var(--rose);font-size:22px;margin:15px 0}
+.reward-banner{
+  background:var(--brown);
+  color:white;
+  padding:65px 8%;
+  text-align:center;
+}
+.reward-banner h2{font-size:clamp(30px,5vw,45px);margin:15px}
+.reward-banner p{
+  font:14px/1.8 Arial,sans-serif;
+  color:#f1ded4;
+  max-width:650px;
+  margin:0 auto 24px;
+}
+.reward-number{
+  color:#f3d2a2;
+  font-size:65px;
+}
+.offer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+.offer{
+  background:white;
+  border:1px solid #eadbd2;
+  padding:30px 22px;
+  text-align:center;
+}
+.offer-icon{font-size:36px}
+.offer h3{font-size:21px;margin:16px 0 10px}
+.offer p{
+  font:13px/1.8 Arial,sans-serif;
+  color:#806e66;
+}
+.review-area{
+  background:#f8e9e5;
+  padding:65px 6%;
+  text-align:center;
+}
+.review-area h2{font-size:35px;margin-bottom:15px}
+.review-area p{
+  font:14px/1.8 Arial,sans-serif;
+  color:#765e56;
+}
+.review-note{margin-top:20px;font-size:12px!important}
+.cta{margin-top:25px}
+footer{
+  background:var(--dark);
+  color:white;
+  padding:50px 7% 25px;
+}
+.footer-inner{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:35px;
+}
+footer h3{margin-bottom:15px;color:#f2c5ca}
+footer p,footer a{
+  display:block;
+  color:#d8c5bd;
+  font:13px/2 Arial,sans-serif;
+}
+.copyright{
+  text-align:center;
+  border-top:1px solid #ffffff25;
+  margin-top:35px;
+  padding-top:20px;
+  color:#cbb6ae;
+  font:12px Arial,sans-serif;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  background:#170c0bd9;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.modal.show{display:flex}
+.modal-box{
+  background:#fffaf5;
+  width:100%;
+  max-width:430px;
+  padding:30px;
+  position:relative;
+  max-height:90vh;
+  overflow:auto;
+}
+.modal-box h2{font-size:27px;margin-bottom:10px}
+.modal-box p{
+  font:13px/1.7 Arial,sans-serif;
+  color:#806e66;
+  margin-bottom:20px;
+}
+.close{
+  position:absolute;
+  top:12px;
+  right:15px;
+  border:0;
+  background:none;
+  font-size:25px;
+}
+.modal-box input{
+  width:100%;
+  padding:13px;
+  margin:7px 0 13px;
+  border:1px solid #d9c8bd;
+  background:white;
+  font:14px Arial,sans-serif;
+  border-radius:3px;
+}
+.modal-box label{
+  font:12px Arial,sans-serif;
+}
+.modal-box .btn{width:100%;margin-top:10px}
+.switch{
+  text-align:center;
+  margin-top:17px;
+  font:13px Arial,sans-serif;
+}
+.switch a{color:var(--rose);text-decoration:underline}
+.status{
+  font:13px Arial,sans-serif;
+  margin-top:12px;
+  color:#8b4545;
+}
+@media(max-width:760px){
+  .nav{padding:15px 4%;flex-wrap:wrap}
+  .logo{font-size:24px}
+  .navlinks{order:3;width:100%;justify-content:center;gap:17px;font-size:11px}
+  .nav>.btn{padding:11px 14px}
+  .hero{min-height:530px;padding:60px 7%}
+  .products{grid-template-columns:1fr}
+  .product img{height:250px}
+  .offer-grid{grid-template-columns:1fr}
+  .section{padding:60px 6%}
+  .footer-inner{grid-template-columns:1fr}
+}
+@media(min-width:761px) and (max-width:950px){
+  .navlinks{gap:12px}
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">A LITTLE SWEETNESS, A LOT OF LOVE · COCOBELLE</div>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo">Coco<span>Belle</span></a>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#offers">Offers</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <button class="btn" onclick="openModal('login')">My Account</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Made with love · Served with joy</div>
+    <h1>Every Bite<br>Feels Like <span>Love.</span></h1>
+    <p>
+      Discover the beautiful world of CocoBelle.
+      Indulge in delicious desserts, collect visits
+      and unlock delightful surprises.
+    </p>
+    <div class="hero-actions">
+      <a href="#desserts" class="btn btn-gold">Explore Desserts</a>
+      <button class="btn btn-outline" style="color:white;border-color:white"
+      onclick="openModal('register')">Join Our Club</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="desserts">
+  <div class="section-heading">
+    <small>OUR LITTLE WORLD OF SWEETNESS</small>
+    <h2>Made to Make You Smile</h2>
+    <p>Discover our signature brownie tub collection.</p>
+  </div>
+  <div class="products">
+    <article class="product">
+      <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85" alt="Classic chocolate brownie dessert">
+      <div class="product-info">
+        <h3>Classic Chocolate Brownie Tub</h3>
+        <p>Rich chocolate brownie layered with creamy sweetness.</p>
+        <div class="price">₹99</div>
+        <a href="#offers" class="btn">Discover Offers</a>
+      </div>
+    </article>
+    <article class="product">
+      <img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=900&q=85" alt="Chocolate dessert">
+      <div class="product-info">
+        <h3>Choco Surprise Brownie Tub</h3>
+        <p>A delicious chocolate experience with a little surprise.</p>
+        <div class="price">₹99</div>
+        <a href="#rewards" class="btn">Discover Rewards</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="reward-banner" id="rewards">
+  <div class="eyebrow">A little gift for your loyalty</div>
+  <div class="reward-number">10 ♥ 1</div>
+  <h2>Sweet Visits, Special Surprises</h2>
+  <p>
+    Every eligible visit brings you one step closer
+    to a special surprise gift. Complete 10 visits
+    and unlock your CocoBelle reward.
+  </p>
+  <button class="btn btn-gold" onclick="openModal('register')">
+    Start Collecting Visits
+  </button>
+</section>
+
+<section class="section" id="offers">
+  <div class="section-heading">
+    <small>MORE REASONS TO CELEBRATE</small>
+    <h2>Something Special for Everyone</h2>
+    <p>Discover the CocoBelle offers.</p>
+  </div>
+  <div class="offer-grid">
+    <article class="offer">
+      <div class="offer-icon">🎁</div>
+      <h3>Lucky Customer</h3>
+      <p>Get a chance to become our lucky customer and enjoy a special surprise.</p>
+    </article>
+    <article class="offer">
+      <div class="offer-icon">💝</div>
+      <h3>Friends Combo</h3>
+      <p>Sweet moments are even better when shared with friends.</p>
+    </article>
+    <article class="offer">
+      <div class="offer-icon">🌸</div>
+      <h3>Come Back Offer</h3>
+      <p>We miss you! Come back and discover a special CocoBelle treat.</p>
+    </article>
+  </div>
+</section>
+
+<section class="review-area" id="reviews">
+  <div class="eyebrow">YOUR LOVE MAKES US BETTER</div>
+  <h2>Share Your Sweet Experience</h2>
+  <p>
+    Your feedback matters to us. Sign in to share your
+    experience after a verified purchase.
+  </p>
+  <div class="cta">
+    <button class="btn" onclick="openModal('login')">Write a Review</button>
+  </div>
+  <p class="review-note">
+    Only approved genuine customer reviews will appear here.
+  </p>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h3 class="logo">Coco<span>Belle</span></h3>
+      <p>Sweet moments. Beautiful memories.<br>
+      Thank you for being part of our journey.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href="#home">Home</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#offers">Offers</a>
+    </div>
+    <div>
+      <h3>My Account</h3>
+      <a href="#" onclick="openModal('login');return false">Customer Login</a>
+      <a href="#" onclick="openModal('register');return false">Register</a>
+    </div>
+  </div>
+  <div class="copyright">© 2026 CocoBelle. All Rights Reserved.</div>
+</footer>
+
+<div class="modal" id="accountModal" onclick="outsideClose(event)">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const modal=document.getElementById('accountModal');
+const content=document.getElementById('modalContent');
+
+function openModal(type){
+  modal.classList.add('show');
+  renderForm(type);
+}
+function closeModal(){
+  modal.classList.remove('show');
+}
+function outsideClose(e){
+  if(e.target===modal)closeModal();
+}
+function renderForm(type){
+  if(type==='register'){
+    content.innerHTML=`
+      <h2>Join CocoBelle</h2>
+      <p>Create your account and start collecting sweet rewards.</p>
+      <form onsubmit="demoSubmit(event)">
+        <label>Full Name</label>
+        <input required type="text" placeholder="Your full name">
+        <label>Email Address</label>
+        <input required type="email" placeholder="Your email">
+        <label>Mobile Number</label>
+        <input required type="tel" pattern="[0-9]{10}" placeholder="10 digit mobile number">
+        <label>Password</label>
+        <input required type="password" minlength="8" placeholder="Create password">
+        <button class="btn" type="submit">Create Account</button>
+      </form>
+      <div class="switch">Already a member? <a href="#" onclick="renderForm('login');return false">Login</a></div>
+      <div class="status" id="formStatus"></div>`;
+  }else{
+    content.innerHTML=`
+      <h2>Welcome Back</h2>
+      <p>Login to explore your CocoBelle rewards.</p>
+      <form onsubmit="demoSubmit(event)">
+        <label>Email Address</label>
+        <input required type="email" placeholder="Your email">
+        <label>Password</label>
+        <input required type="password" placeholder="Your password">
+        <button class="btn" type="submit">Login</button>
+      </form>
+      <div class="switch">New to CocoBelle? <a href="#" onclick="renderForm('register');return false">Create Account</a></div>
+      <div class="status" id="formStatus"></div>`;
+  }
+}
+function demoSubmit(e){
+  e.preventDefault();
+  document.getElementById('formStatus').textContent=
+  'Customer authentication will be connected securely with Supabase in the next development stage.';
+}
+</script>
+</body>
+</html>
